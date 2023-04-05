@@ -3,14 +3,15 @@ import { nanoid } from 'nanoid';
 import { FaUserPlus } from 'react-icons/fa';
 import { Btn, Form, Input, Label } from './ContactsForm.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContacts, getContacts } from 'redux/slise';
+import { addContacts } from 'redux/operetions'; 
+import { getContacts } from 'redux/selectors';
 
 function ContactForm() {
-  const contacts = useSelector(getContacts);
+  const items = useSelector(getContacts);
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
 
   const handlChange = e => {
     const { value, name } = e.currentTarget;
@@ -20,19 +21,18 @@ function ContactForm() {
         setName(value);
         break;
       case 'number':
-        setNumber(value);
+        setPhone(value);
         break;
       default:
         return;
     }
   };
-  const addContact = ({ name, number }) => {
-    const newContact = { id: nanoid(), name, number };
+  const addContact = ({ name, phone }) => {
+    const newContact = { name, phone, id:nanoid() };
+    
 
     if (
-      contacts.some(
-        contact => contact.name.toLowerCase() === name.toLowerCase()
-      )
+      items.some(({contact}) => contact.name.toLowerCase() === name.toLowerCase())
     ) {
       alert(`${name} is already in contacts.`);
     } else {
@@ -43,7 +43,7 @@ function ContactForm() {
 
   const reset = () => {
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   const iconStyles = { fill: '#FFFFFF', marginLeft: '10px' };
@@ -51,7 +51,7 @@ function ContactForm() {
     <Form
       onSubmit={e => {
         e.preventDefault();
-        addContact({ name, number });
+        addContact({ name, phone });
       }}
     >
       <Label>
@@ -74,7 +74,7 @@ function ContactForm() {
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          value={number}
+          value={phone}
           onChange={handlChange}
         />
       </Label>
