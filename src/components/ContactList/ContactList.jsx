@@ -11,26 +11,13 @@ import {
 import { deleteContacts, fetchContacts } from 'redux/operetions';
 import { useDispatch, useSelector } from 'react-redux';
 import Massege from 'components/Massege';
-import { getContacts, getFilter } from 'redux/selectors';
+import {selectVisibleContacts } from 'redux/selectors';
 import { useEffect } from 'react';
 
 const ContactList = () => {
   const svgStylePhon = { fill: '#006400', marginRight: '8px' };
   const svgStyleUser = { fill: '#FF4500', marginLeft: '8px' };
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilter);
-
-  const getContactOnFilter = () => {
-    if (filter !== '') {
-      const normalizedFilter = filter.toLowerCase();
-
-      return contacts.filter(({ contact:{name} }) =>
-        name.toLowerCase().includes(normalizedFilter)
-      );
-    }
-    return contacts;
-  };
-  const contactsProcessedFilters = getContactOnFilter();
+  const contacts = useSelector(selectVisibleContacts);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -39,13 +26,13 @@ const ContactList = () => {
 
   return (
     <>
-      {contactsProcessedFilters.length > 0 ? (
+      {contacts.length > 0 ? (
         <Box>
-          {contactsProcessedFilters.map(({ id, contact }) => (
-            <List key={contact.id}>
+          {contacts.map(({ id, name, phone }) => (
+            <List key={id}>
               <AiOutlinePhone style={svgStylePhon} size={20}></AiOutlinePhone>
-              <ContactName>{contact.name}</ContactName>
-              <ContactNumber>{contact.phone}</ContactNumber>
+              <ContactName>{name}</ContactName>
+              <ContactNumber>{phone}</ContactNumber>
               <>
                 <Btn type="button" onClick={e => dispatch(deleteContacts(id))}>
                   Delete{' '}
@@ -63,4 +50,4 @@ const ContactList = () => {
 };
 
 export default ContactList;
-// contact:{ id, name, phone}
+

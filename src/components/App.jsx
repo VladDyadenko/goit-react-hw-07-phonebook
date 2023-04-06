@@ -12,6 +12,7 @@ const App = () => {
       <div>
         <Title title="Contacts"></Title>
         <Filter />
+        
         <ContactList />
       </div>
     </Container>

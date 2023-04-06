@@ -4,10 +4,10 @@ import { FaUserPlus } from 'react-icons/fa';
 import { Btn, Form, Input, Label } from './ContactsForm.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContacts } from 'redux/operetions'; 
-import { getContacts } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
 
 function ContactForm() {
-  const items = useSelector(getContacts);
+  const items = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
@@ -32,7 +32,7 @@ function ContactForm() {
     
 
     if (
-      items.some(({contact}) => contact.name.toLowerCase() === name.toLowerCase())
+      items.some(contact => contact.name.toLowerCase() === name.toLowerCase())
     ) {
       alert(`${name} is already in contacts.`);
     } else {
