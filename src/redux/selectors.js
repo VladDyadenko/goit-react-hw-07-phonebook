@@ -8,8 +8,9 @@ export const selectVisibleContacts = state => {
     const normalizedFilter = currentFilter.toLowerCase();
     return currentContacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
-    )};
+    );
+  }
   return currentContacts;
 };
 export const selectPending = state => state.phonebook.isLoading;
-export const selectError = state => state.phonebook.error();
+export const selectError = state => state.phonebook.error;

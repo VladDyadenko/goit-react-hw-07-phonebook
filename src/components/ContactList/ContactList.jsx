@@ -11,7 +11,7 @@ import {
 import { deleteContacts, fetchContacts } from 'redux/operetions';
 import { useDispatch, useSelector } from 'react-redux';
 import Massege from 'components/Massege';
-import {selectVisibleContacts } from 'redux/selectors';
+import { selectVisibleContacts } from 'redux/selectors';
 import { useEffect } from 'react';
 
 const ContactList = () => {
@@ -50,4 +50,3 @@ const ContactList = () => {
 };
 
 export default ContactList;
-

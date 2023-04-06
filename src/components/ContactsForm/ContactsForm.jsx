@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import { FaUserPlus } from 'react-icons/fa';
 import { Btn, Form, Input, Label } from './ContactsForm.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContacts } from 'redux/operetions'; 
+import { addContacts } from 'redux/operetions';
 import { selectContacts } from 'redux/selectors';
 
 function ContactForm() {
@@ -28,8 +28,7 @@ function ContactForm() {
     }
   };
   const addContact = ({ name, phone }) => {
-    const newContact = { name, phone, id:nanoid() };
-    
+    const newContact = { name, phone, id: nanoid() };
 
     if (
       items.some(contact => contact.name.toLowerCase() === name.toLowerCase())
