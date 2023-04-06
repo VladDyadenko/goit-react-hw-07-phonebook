@@ -40,7 +40,7 @@ const ContactList = () => {
                   {operetion === id ? (
                     <Audio
                       height="20"
-                      width="100"
+                      width="40"
                       color="#ffffff"
                       ariaLabel="audio-loading"
                       wrapperStyle={{}}
