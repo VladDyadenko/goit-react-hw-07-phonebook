@@ -4,12 +4,12 @@ import ContactList from './ContactList';
 import Filter from './Filter';
 import Title from './Title';
 import { useSelector } from 'react-redux';
-import { selectError, selectPending } from 'redux/selectors';
+import { selectError, selectOperetion } from 'redux/selectors';
 import ErrorCard from './ErrorCard/ErrorCard';
 import { RotatingLines } from 'react-loader-spinner';
 
 const App = () => {
-  const panding = useSelector(selectPending);
+  const operetion = useSelector(selectOperetion);
   const error = useSelector(selectError);
 
   return (
@@ -20,9 +20,9 @@ const App = () => {
       <div>
         <Title title="Contacts"></Title>
         <Filter />
-        {panding && (
+        {operetion === 'fatch' && (
           <RotatingLines
-            strokeColor="green"
+            strokeColor="#188ce8"
             strokeWidth="5"
             animationDuration="0.75"
             width="60"

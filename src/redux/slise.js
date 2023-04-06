@@ -4,7 +4,6 @@ import { fetchContacts, addContacts, deleteContacts } from './operetions';
 const contactsInitialState = {
   contacts: {
     items: [],
-    isLoading: false,
     operetion: null,
     error: null,
   },
@@ -24,41 +23,33 @@ const contactsSlise = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchContacts.pending, state => {
-        state.isLoading = true;
         state.operetion = 'fatch';
       })
       .addCase(fetchContacts.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
         state.operetion = null;
         state.error = null;
         state.contacts.items = payload;
       })
       .addCase(fetchContacts.rejected, (state, { payload }) => {
-        state.isLoading = false;
         state.operetion = null;
         state.error = payload;
       })
       .addCase(addContacts.pending, state => {
-        state.isLoading = true;
         state.operetion = 'add';
       })
       .addCase(addContacts.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
         state.operetion = null;
         state.error = null;
         state.contacts.items.push(payload);
       })
       .addCase(addContacts.rejected, (state, { payload }) => {
-        state.isLoading = false;
         state.operetion = null;
         state.error = payload;
       })
       .addCase(deleteContacts.pending, (state, action) => {
-        state.isLoading = true;
         state.operetion = `${action.meta.arg}`;
       })
       .addCase(deleteContacts.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
         state.operetion = null;
         state.error = null;
         const index = state.contacts.items.findIndex(

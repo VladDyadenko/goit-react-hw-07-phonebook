@@ -5,7 +5,6 @@ export const Info = styled.h2`
   font-size: 20px;
   text-align: center;
   margin: 20px 0 0 0;
-  padding: 5px;
   color: #008000;
   border-top: 2px solid #008000;
 `;

@@ -12,6 +12,5 @@ export const selectVisibleContacts = state => {
   }
   return currentContacts;
 };
-export const selectPending = state => state.phonebook.isLoading;
 export const selectError = state => state.phonebook.error;
 export const selectOperetion = state => state.phonebook.operetion;

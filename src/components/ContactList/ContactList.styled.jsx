@@ -11,20 +11,39 @@ export const Box = styled.ul`
 `;
 export const List = styled.li`
   width: 100%;
-  display: grid;
-  grid-template-columns: 30px repeat(2, 240px) 100px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  /* grid-template-columns: 30px repeat(2, 80px 80px) 100px; */
   margin-bottom: 8px;
 `;
 export const ContactName = styled.span`
-  min-width: 120px;
+  min-width: 30%;
   margin-right: 10px;
+  font-size: 13px;
   color: #8b4513;
+  @media screen and (min-width: 480px) and (max-width: 767px) {
+    width: 180px;
+    font-size: 16px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 40%;
+    font-size: 18px;
+  }
 `;
 export const ContactNumber = styled.span`
-  min-width: 150px;
+  min-width: 30%;
   margin-right: 10px;
   color: #2d2d2d;
-  font-size: 20px;
+  font-size: 13px;
+  @media screen and (min-width: 480px) and (max-width: 767px) {
+    width: 160px;
+    font-size: 16px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 40%;
+    font-size: 18px;
+  }
 `;
 
 export const Btn = styled.button`
@@ -35,13 +54,14 @@ export const Btn = styled.button`
 
   font-family: 'Roboto Slab', sans-serif;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.88;
   letter-spacing: 0.06em;
   border-radius: 4px;
-  color: #ff4500;
-  background-color: #deb887;
+  color: #ffffff;
+  background-color: #188ce8;
   display: flex;
+
   justify-content: center;
   align-items: center;
   transition: scale 250ms cubic-bezier(0.4, 0, 0.2, 1);

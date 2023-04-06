@@ -5,7 +5,7 @@ import { Btn, Form, Input, Label } from './ContactsForm.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContacts } from 'redux/operetions';
 import { selectContacts, selectOperetion } from 'redux/selectors';
-import { RotatingLines } from 'react-loader-spinner';
+import { Audio } from 'react-loader-spinner';
 
 function ContactForm() {
   const items = useSelector(selectContacts);
@@ -81,11 +81,13 @@ function ContactForm() {
       </Label>
       <Btn type="submit">
         {operetion === 'add' ? (
-          <RotatingLines
-            strokeColor="#ffffff"
-            strokeWidth="5"
-            animationDuration="0.75"
-            width="30"
+          <Audio
+            height="30"
+            width="100"
+            color="#ffffff"
+            ariaLabel="audio-loading"
+            wrapperStyle={{}}
+            wrapperClass="wrapper-class"
             visible={true}
           />
         ) : (

@@ -13,11 +13,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import Massege from 'components/Massege';
 import { selectOperetion, selectVisibleContacts } from 'redux/selectors';
 import { useEffect } from 'react';
-import { RotatingLines } from 'react-loader-spinner';
+import { Audio } from 'react-loader-spinner';
 
 const ContactList = () => {
-  const svgStylePhon = { fill: '#006400', marginRight: '8px' };
-  const svgStyleUser = { fill: '#FF4500', marginLeft: '8px' };
+  const svgStylePhon = { fill: '#006400', marginRight: '10px', width: '10%' };
+  const svgStyleUser = { fill: '#ffffff', marginLeft: '8px' };
   const contacts = useSelector(selectVisibleContacts);
   const operetion = useSelector(selectOperetion);
 
@@ -38,11 +38,13 @@ const ContactList = () => {
               <>
                 <Btn type="button" onClick={e => dispatch(deleteContacts(id))}>
                   {operetion === id ? (
-                    <RotatingLines
-                      strokeColor="#ffffff"
-                      strokeWidth="8"
-                      animationDuration="0.75"
-                      width="20"
+                    <Audio
+                      height="20"
+                      width="100"
+                      color="#ffffff"
+                      ariaLabel="audio-loading"
+                      wrapperStyle={{}}
+                      wrapperClass="wrapper-class"
                       visible={true}
                     />
                   ) : (
