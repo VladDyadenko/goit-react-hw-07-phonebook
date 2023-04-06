@@ -4,10 +4,12 @@ import { FaUserPlus } from 'react-icons/fa';
 import { Btn, Form, Input, Label } from './ContactsForm.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContacts } from 'redux/operetions';
-import { selectContacts } from 'redux/selectors';
+import { selectContacts, selectOperetion } from 'redux/selectors';
+import { RotatingLines } from 'react-loader-spinner';
 
 function ContactForm() {
   const items = useSelector(selectContacts);
+  const operetion = useSelector(selectOperetion);
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
@@ -78,8 +80,20 @@ function ContactForm() {
         />
       </Label>
       <Btn type="submit">
-        Add contact
-        <FaUserPlus style={iconStyles} size={20}></FaUserPlus>
+        {operetion === 'add' ? (
+          <RotatingLines
+            strokeColor="#ffffff"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="30"
+            visible={true}
+          />
+        ) : (
+          <>
+            Add contact
+            <FaUserPlus style={iconStyles} size={20} />
+          </>
+        )}
       </Btn>
     </Form>
   );

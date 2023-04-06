@@ -11,13 +11,15 @@ import {
 import { deleteContacts, fetchContacts } from 'redux/operetions';
 import { useDispatch, useSelector } from 'react-redux';
 import Massege from 'components/Massege';
-import { selectVisibleContacts } from 'redux/selectors';
+import { selectOperetion, selectVisibleContacts } from 'redux/selectors';
 import { useEffect } from 'react';
+import { RotatingLines } from 'react-loader-spinner';
 
 const ContactList = () => {
   const svgStylePhon = { fill: '#006400', marginRight: '8px' };
   const svgStyleUser = { fill: '#FF4500', marginLeft: '8px' };
   const contacts = useSelector(selectVisibleContacts);
+  const operetion = useSelector(selectOperetion);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -35,8 +37,19 @@ const ContactList = () => {
               <ContactNumber>{phone}</ContactNumber>
               <>
                 <Btn type="button" onClick={e => dispatch(deleteContacts(id))}>
-                  Delete{' '}
-                  <FaTrashAlt style={svgStyleUser} size={15}></FaTrashAlt>
+                  {operetion === id ? (
+                    <RotatingLines
+                      strokeColor="#ffffff"
+                      strokeWidth="8"
+                      animationDuration="0.75"
+                      width="20"
+                      visible={true}
+                    />
+                  ) : (
+                    <>
+                      Delete <FaTrashAlt style={svgStyleUser} size={15} />
+                    </>
+                  )}
                 </Btn>
               </>
             </List>

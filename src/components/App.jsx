@@ -3,10 +3,10 @@ import ContactForm from './ContactsForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
 import Title from './Title';
-import Loader from './Loader/Loader';
 import { useSelector } from 'react-redux';
 import { selectError, selectPending } from 'redux/selectors';
 import ErrorCard from './ErrorCard/ErrorCard';
+import { RotatingLines } from 'react-loader-spinner';
 
 const App = () => {
   const panding = useSelector(selectPending);
@@ -20,7 +20,15 @@ const App = () => {
       <div>
         <Title title="Contacts"></Title>
         <Filter />
-        {panding && <Loader />}
+        {panding && (
+          <RotatingLines
+            strokeColor="green"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="60"
+            visible={true}
+          />
+        )}
         <ContactList />
       </div>
     </Container>
